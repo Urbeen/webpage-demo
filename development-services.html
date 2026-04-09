@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acies AgBio — Development Services</title>
+<style>
+:root{
+  --bg:#fcfcf7;
+  --panel:#ffffff;
+  --text:#18181b;
+  --muted:#52525b;
+  --line:#e4e4e7;
+  --green:#2d7a43;
+  --green-2:#7bc66c;
+  --green-3:#dff4c8;
+  --lime:#f2f9e6;
+  --amber:#fff4d6;
+  --dark:#111111;
+  --shadow:0 10px 30px rgba(0,0,0,.06);
+  --radius:26px;
+  --radius-lg:34px;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%}
+.container{max-width:var(--max);margin:0 auto;padding:24px}
+.topbar{position:sticky;top:16px;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.85);box-shadow:var(--shadow);border-radius:28px;padding:16px 18px;margin-bottom:28px}
+.topbar-row{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;gap:12px;align-items:center}
+.brand-mark{width:44px;height:44px;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.05);background:linear-gradient(135deg,#cde879 0%,#7bc66c 45%,#2d7a43 100%)}
+.brand-kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#71717a;font-weight:600}
+.brand-title{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a,.cta,.btn{display:inline-block;appearance:none;border:none;background:#f4f4f5;color:#3f3f46;border-radius:16px;padding:10px 14px;font-size:14px;cursor:pointer;transition:.2s}
+.nav a.active{background:#111;color:#fff;box-shadow:var(--shadow)}
+.nav a:hover,.btn:hover{transform:translateY(-1px)}
+.cta{background:#111;color:#fff;padding:12px 18px;border-radius:18px;font-weight:600}
+.stack-xl{display:grid;gap:80px}
+.stack-lg{display:grid;gap:48px}
+.stack-md{display:grid;gap:28px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8fbe9 0%,#fff 52%,#fff4d5 100%);border:1px solid #edf4d9;border-radius:36px;box-shadow:var(--shadow);padding:28px}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:999px;filter:blur(2px)}
+.hero:before{width:440px;height:440px;left:-90px;top:-120px;background:radial-gradient(circle, rgba(163,230,53,.18) 0%, rgba(163,230,53,0) 65%)}
+.hero:after{width:380px;height:380px;right:-70px;bottom:-130px;background:radial-gradient(circle, rgba(245,158,11,.16) 0%, rgba(245,158,11,0) 60%)}
+.hero-grid{position:relative;display:grid;gap:24px;grid-template-columns:1.08fr .92fr;align-items:center}
+.eyebrow{display:inline-flex;background:#dff6e3;color:#146534;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:600}
+h1{font-size:clamp(40px,6vw,64px);line-height:1.02;letter-spacing:-.04em;margin:0}
+h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;margin:0}
+h3{font-size:clamp(24px,3vw,36px);line-height:1.12;letter-spacing:-.03em;margin:0}
+p{margin:0;color:var(--muted);font-size:18px;line-height:1.7}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:#fff;border:1px solid var(--line);color:#27272a;padding:13px 18px;border-radius:18px;font-weight:600}
+.btn.dark{background:#111;color:#fff;border-color:#111}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid #cce7be;font-size:14px;color:#3f3f46;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.photo-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
+.photo-panel{position:relative;overflow:hidden;border-radius:30px;min-height:240px;border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow)}
+.photo-panel img{height:100%;object-fit:cover;transition:transform .5s}
+.photo-panel:hover img{transform:scale(1.03)}
+.photo-panel .overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.22), rgba(0,0,0,.02))}
+.photo-panel .caption{position:absolute;left:0;right:0;bottom:0;padding:24px;color:#fff}
+.photo-panel .caption h3{font-size:30px}
+.photo-panel .caption p{color:rgba(255,255,255,.86);font-size:15px;line-height:1.6;margin-top:8px}
+.span-2{grid-column:1 / -1}
+.grid-3,.grid-4,.grid-2{display:grid;gap:20px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);overflow:hidden}
+.card.pad{padding:28px}
+.card-header{padding:26px 26px 0}
+.card-content{padding:0 26px 26px}
+.card p{font-size:17px}
+.badge{display:inline-flex;background:#edf9e7;color:#3f6212;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:12px}
+.badge.amber{background:#fff1cc;color:#92400e}
+.badge.dark{background:rgba(255,255,255,.12);color:#fff}
+.small-grid{display:grid;gap:12px}
+.small-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.pill-box{padding:16px;border-radius:20px;background:#f9fafb;border:1px solid #eef0f2;font-size:16px;color:#3f3f46}
+.pill-box.green{background:#f4fbe8;border-color:#e0f0c2}
+.pill-box.amber{background:#fff7df;border-color:#ffe8ad}
+.stats .value{font-size:40px;font-weight:700;letter-spacing:-.03em;color:#111}
+.stats .label{font-size:14px;color:#71717a}
+.section-head{max-width:860px;display:grid;gap:12px}
+.section-head .eyebrow{width:max-content}
+.step-no{display:inline-flex;width:40px;height:40px;border-radius:16px;align-items:center;justify-content:center;background:#111;color:#fff;font-size:14px;font-weight:700;margin-bottom:14px}
+.step-label{font-size:14px;font-weight:700;color:#166534;margin-bottom:8px}
+.dark-band{background:#111;color:#fff;border:1px solid #27272a}
+.dark-band p,.dark-card p{color:#d4d4d8}
+.dark-grid{display:grid;grid-template-columns:1.1fr .9fr}
+.dark-card{background:#111;color:#fff;border:1px solid #27272a;border-radius:32px;overflow:hidden;box-shadow:var(--shadow)}
+.dark-card .pill-box{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.1);color:#f4f4f5}
+.icon-badge{width:56px;height:56px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ffeab6,#e7f6c8);color:#166534}
+.icon-badge svg{width:28px;height:28px}
+.form-grid{display:grid;gap:16px}
+.form-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+input,textarea{width:100%;border:1px solid var(--line);border-radius:18px;padding:14px 16px;font:inherit;color:#18181b;background:#fff}
+textarea{min-height:160px;resize:vertical}
+footer{margin-top:80px}
+@media (max-width: 1024px){
+  .hero-grid,.dark-grid,.grid-3,.grid-4,.grid-2,.small-grid.cols-2,.form-grid.cols-2,.photo-grid{grid-template-columns:1fr}
+  .span-2{grid-column:auto}
+}
+@media (max-width: 640px){
+  .container{padding:14px}
+  .hero{padding:20px}
+  .card.pad,.card-header,.card-content{padding-left:18px;padding-right:18px}
+  .card-content{padding-bottom:18px}
+  .topbar{top:8px}
+  p{font-size:16px}
+  .photo-panel .caption h3{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="topbar">
+  <div class="topbar-row">
+    
+<div class="brand">
+  <div class="brand-mark" aria-hidden="true">
+    <svg viewBox="0 0 64 64" width="44" height="44">
+      <defs>
+        <linearGradient id="leafGlow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f4d35e"></stop>
+          <stop offset="100%" stop-color="#d6f28a"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M15 42C20 24 36 15 50 15C47 30 37 46 18 49" fill="url(#leafGlow)" opacity="0.95"></path>
+      <path d="M19 44C25 36 31 30 44 23" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"></path>
+      <circle cx="48" cy="14" r="5" fill="#f4d35e" opacity="0.95"></circle>
+    </svg>
+  </div>
+  <div>
+    <div class="brand-kicker">by Acies Bio</div>
+    <div class="brand-title">Acies AgBio</div>
+  </div>
+</div>
+
+    <nav class="nav"><a href="index.html" class="">Home</a><a href="development-services.html" class="active">Development Services</a><a href="production-services.html" class="">Production Services</a><a href="products.html" class="">Products</a><a href="contact.html" class="">Contact</a></nav>
+    <a class="cta" href="contact.html">Start your inquiry</a>
+  </div>
+</header>
+<main class="stack-xl">
+
+<section class="stack-lg">
+  <div class="section-head">
+    <div class="eyebrow">Development Services</div>
+    <h2>Development support shaped around agricultural biological products.</h2>
+    <p>These services are designed for AgBio companies that need a practical route from biological promise to credible technical progress, validation material, and a stronger process foundation.</p>
+  </div>
+  <div class="photo-panel">
+    <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=1600&q=80" alt="From product concept to trial-ready material">
+    <div class="overlay"></div>
+    <div class="caption"><h3>From product concept to trial-ready material</h3><p>Acies AgBio supports the development path with a clear focus on the next milestone your program needs to reach.</p></div>
+  </div>
+  <div class="grid-3">
+    <article class="card"><img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80" alt="Agricultural microbials" style="height:192px;object-fit:cover"><div class="card-header"><h3>Agricultural microbials</h3></div><div class="card-content stack-md"><p>Development support for microbial products intended for biocontrol, biostimulation, and biofertility applications — from early screening to trial-ready material.</p><div class="small-grid"><div class="pill-box">Screening and evaluation</div><div class="pill-box">Process development</div><div class="pill-box">Material for greenhouse and field trials</div></div></div></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80" alt="N-fixation" style="height:192px;object-fit:cover"><div class="card-header"><h3>N-fixation</h3></div><div class="card-content stack-md"><p>A practical route for teams developing nitrogen-fixation solutions that need partner support in candidate selection, development, and manufacturing readiness.</p><div class="small-grid"><div class="pill-box">Candidate support</div><div class="pill-box">Screening and selection</div><div class="pill-box">Scalable development path</div></div></div></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=1200&q=80" alt="dsRNA" style="height:192px;object-fit:cover"><div class="card-header"><h3>dsRNA</h3></div><div class="card-content stack-md"><p>Support for RNAi-based agricultural programs that need an efficient path from research-stage systems to material supply for validation and trials.</p><div class="small-grid"><div class="pill-box">Expression systems</div><div class="pill-box">Early-stage screening</div><div class="pill-box">Scale-up for trial supply</div></div></div></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80" alt="Cytokinins and bioactive ingredients" style="height:192px;object-fit:cover"><div class="card-header"><h3>Cytokinins and bioactive ingredients</h3></div><div class="card-content stack-md"><p>Microbial production routes for high-value bioactive ingredients intended for crop performance and agricultural use cases.</p><div class="small-grid"><div class="pill-box">Discovery and production</div><div class="pill-box">Commercially oriented development</div><div class="pill-box">Reliable route to supply</div></div></div></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&w=1200&q=80" alt="Proteins, peptides and enzymes" style="height:192px;object-fit:cover"><div class="card-header"><h3>Proteins, peptides and enzymes</h3></div><div class="card-content stack-md"><p>Development support for agricultural protein, peptide, and enzyme concepts that need expression, purification, and manufacturable process design.</p><div class="small-grid"><div class="pill-box">Expression systems</div><div class="pill-box">Process screening</div><div class="pill-box">Purity and productivity focus</div></div></div></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=1200&q=80" alt="Secondary metabolites and natural actives" style="height:192px;object-fit:cover"><div class="card-header"><h3>Secondary metabolites and natural actives</h3></div><div class="card-content stack-md"><p>Integrated development for fermentation-derived actives that require a credible path from biology to process performance and downstream recovery.</p><div class="small-grid"><div class="pill-box">Analytical support</div><div class="pill-box">Bioprocess and DSP</div><div class="pill-box">Route to technical-grade material</div></div></div></article>
+  </div>
+  <section class="card pad">
+    <div class="grid-2" style="align-items:center">
+      <div class="stack-md">
+        <div class="eyebrow">SmartRoute</div>
+        <h3>A structured route from biological potential to measurable progress.</h3>
+        <p>SmartRoute brings design, development, validation, and manufacturing readiness into one connected path so decisions made early still support what comes next.</p>
+        <div><a class="btn dark" href="contact.html">Discuss your development project</a></div>
+      </div>
+      <div class="grid-2">
+        <div class="card pad" style="box-shadow:none"><div class="step-label">Step 1</div><h3>Define the next milestone</h3><p>Align the program around the biological product, target application, stage of development, and the result needed next.</p></div>
+        <div class="card pad" style="box-shadow:none"><div class="step-label">Step 2</div><h3>Build a robust development route</h3><p>Develop the biology and process in parallel so the product is not only promising, but also practical to advance.</p></div>
+        <div class="card pad" style="box-shadow:none"><div class="step-label">Step 3</div><h3>Generate material for validation</h3><p>Produce the quantity and quality required for greenhouse work, field trials, and partner validation.</p></div>
+        <div class="card pad" style="box-shadow:none"><div class="step-label">Step 4</div><h3>Prepare for manufacturing</h3><p>Scale the process, improve economics, define downstream requirements, and establish the route to production.</p></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+<footer class="card pad">
+  <div class="grid-2" style="align-items:start">
+    <div class="stack-md">
+      
+<div class="brand">
+  <div class="brand-mark" aria-hidden="true">
+    <svg viewBox="0 0 64 64" width="44" height="44">
+      <defs>
+        <linearGradient id="leafGlow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f4d35e"></stop>
+          <stop offset="100%" stop-color="#d6f28a"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M15 42C20 24 36 15 50 15C47 30 37 46 18 49" fill="url(#leafGlow)" opacity="0.95"></path>
+      <path d="M19 44C25 36 31 30 44 23" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"></path>
+      <circle cx="48" cy="14" r="5" fill="#f4d35e" opacity="0.95"></circle>
+    </svg>
+  </div>
+  <div>
+    <div class="brand-kicker">by Acies Bio</div>
+    <div class="brand-title">Acies AgBio</div>
+  </div>
+</div>
+
+      <p>Agricultural biologicals development, scale-up, production support, and selected products under the Acies AgBio brand.</p>
+    </div>
+    <div class="grid-2">
+      <a class="btn" href="development-services.html">Development services</a>
+      <a class="btn" href="production-services.html">Production services</a>
+      <a class="btn" href="products.html">Products</a>
+      <a class="btn dark" href="contact.html">Start your inquiry</a>
+    </div>
+  </div>
+</footer>
+</div>
+</body>
+</html>

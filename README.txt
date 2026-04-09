@@ -1,0 +1,1 @@
+Open index.html in a normal browser, or upload all files together to a static host such as Netlify or Cloudflare Pages. This is a true multi-page export, so navigation uses normal links instead of JavaScript view switching.
